@@ -1,0 +1,33 @@
+<form action="./search" method="GET">
+    <input type="text" name="q" id="q" placeholder="Enter search">
+    <button type="submit">Search</button>
+    <select name="category" id="category">
+        <option value="*">All</option>
+    {{#each category}}
+        <option value="{{this.category}}">{{this.category}}</option>
+    {{/each}}
+    </select>
+</form>
+
+<h2>List of Apps</h2>
+<h3>Searching for {{q}} within {{c}} category at page {{p}}.</h3>
+
+<ul>
+    {{#each apps}}
+        <li>
+            <a href="app/{{ this.app_id }}">{{ this.name }}</a>
+        </li>
+    {{/each}}
+</ul>
+<div class="con margin">
+    <form class="inline-block" action="./search" method="GET">
+        <input type="hidden" name="c" value="{{c}}">
+        <input type="hidden" name="q" value="{{q}}">
+        <button type="submit" name="offset" value={{prevOffset}}>Prev</button>
+    </form>
+    <form class="inline-block" action="./search" method="GET">
+        <input type="hidden" name="c" value="{{c}}">
+        <input type="hidden" name="q" value="{{q}}">
+        <button type="submit" name="offset" value={{nextOffset}}>Next</button>
+    </form>
+</div>
